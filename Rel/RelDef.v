@@ -5,6 +5,7 @@ Unset Printing Implicit Defensive.
 From Coq Require Import
      Morphisms
      Setoid
+     Ring
      RelationClasses
      Lia
      ssreflect
@@ -194,3 +195,6 @@ Proof.
   unfold rel_minus, rel_lt, Basics.flip in *.
   lia.
 Qed.
+
+Definition rel_sub (x y : rel) := x + (-y).
+Notation "x - y" := (rel_sub x y).

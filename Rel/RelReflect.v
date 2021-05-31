@@ -78,3 +78,8 @@ Proof.
   move => Lt.
   apply /nat_ltP => //.
 Qed.
+
+Proposition rel_eq_dec : forall x y, x ==? y = true → x == y.
+Proof.
+  move => x y /rel_eqP => //.
+Qed.

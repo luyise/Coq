@@ -22,7 +22,7 @@ Proof.
   lia.
 Qed.
 
-Definition nat_of_rel (x : rel) := match x with Zpair a b => a-b end.
+Definition nat_of_rel (x : rel) := match x with Zpair a b => Nat.sub a b end.
 Definition rel_of_nat (n : nat) := Zpair n 0.
 Lemma rel_of_nat_of_relpos {x : rel} : (x >= O_Z) -> rel_of_nat (nat_of_rel x) == x.
 Proof.
