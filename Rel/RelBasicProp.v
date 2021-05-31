@@ -1,4 +1,4 @@
-Add LoadPath "C:\Users\Hp\Documents\Coq\Rel" as CoqRelDir.
+Add LoadPath "C:\Users\Hp\Documents\CoqGit\Rel" as CoqRelDir.
 
 Load RelReflect.
 

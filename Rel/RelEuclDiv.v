@@ -1,4 +1,4 @@
-Add LoadPath "C:\Users\Hp\Documents\Coq\Rel" as CoqRelDir.
+Add LoadPath "C:\Users\Hp\Documents\CoqGit\Rel" as CoqRelDir.
 
 Load RelPosWF.
 
@@ -56,11 +56,8 @@ Proof.
     exact (exist _ (q + One, r) FinalGoal).
 Qed.
 
-Print ind_relpos_div_by.
-
 Definition relpos_eucldiv (x y : rel) (pi_x : x >= O_Z) (pi_y : y > O_Z) : { div : rel * rel | let (q, r) := div in ( ( q * y + r == x ) /\ ( O_Z <= r) /\ ( r < y ) )}.
   pose R := relpos_lt.
-  Check Fix.
   exact ( (@Fix rel R wf_relpos_lt (fun (x : rel) => (relpos_typediv_by y x)) (@ind_relpos_div_by y pi_y)) x pi_x).
 Qed.
 
@@ -73,12 +70,6 @@ Proof.
   unfold O_Z, rel_of_nat, rel_lt; lia.
 Qed.
 
-Eval compute in ( @relpos_eucldiv (rel_of_nat (183)) (rel_of_nat (22)) le_0_183 lt_0_22 ). 
-
-Locate "{ _ | _ }".
-Print sig.
-Check (exist).
-Check @sig.
 Definition witness {A : Type} {P : A -> Prop} (S : @sig A P) : A.
   case S => x _.
   exact x.
