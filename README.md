@@ -1,2 +1,2 @@
-# Rel
-An implementation of relatives number in Coq
+# Coq
+Personnal experimentations with the proof assistant
