@@ -1,6 +1,6 @@
 Add LoadPath "C:\Users\Hp\Documents\CoqGit\Rel" as CoqRelDir.
 
-Load RelCong.
+Load RelDiv.
 
 (*
 
@@ -12,6 +12,7 @@ Ordre d'appel :
   5. RelPosWF
   6. RelEuclDiv
   7. RelCong
+  8. RelDiv
 
   Last : main
 
