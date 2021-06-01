@@ -54,3 +54,13 @@ Add Ring RelRing : rel_ring_th
 Example test_ring_tactic : forall x y z : rel,
   (x * (y - z) + z * x) == One * y * x + O_Z.
 Proof. move => x y z. ring. Qed.
+
+Lemma plus_relRR : forall x y z :rel,
+  (x + z == y + z) -> x == y.
+Proof.
+    move => [x1 x2] [y1 y2] [z1 z2].
+    unfold rel_plus.
+    unfold rel_eq.
+    simpl.
+    lia.
+Qed.

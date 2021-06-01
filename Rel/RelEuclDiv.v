@@ -205,3 +205,30 @@ Proof.
   exists (q, r).
   assumption.
 Qed.
+
+(*
+Check rel_eucldiv_aux.
+Theorem eucldiv_unicity: forall y x: rel, forall pi : y =/= O_Z,
+  let (q, r) := rel_eucldiv x pi in
+  forall q' r' : rel, (q' * y + r' == x) /\ O_Z <= r' /\ (r' < |y|)
+  -> q == q' /\ r == r'.
+Proof.
+    move => y x pi.
+    unfold rel_eucldiv.
+    pose div := rel_eucldiv_aux x pi.
+    fold div.
+    case: div.
+    intro x0; case: x0.
+    simpl.
+    move => q r [Eq [r_pos r_infY]] q2 r2 [Eq2 [r2_pos r2_infY]].
+    rewrite <-Eq in Eq2.
+    clear Eq x.
+    suff : q == q2.
+    intro EqQ.
+    split; trivial.
+    setoid_rewrite EqQ in Eq2.
+    ring [Eq2].
+
+    assert ((q2 - q + q) * y == q * y + r - r2).
+    
+Qed.*)

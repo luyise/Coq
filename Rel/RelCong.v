@@ -60,3 +60,17 @@ Proof.
   move => -> -> ->.
   reflexivity.
 Qed.
+
+(*
+Lemma iggsrghio : forall y M : rel, M =/= O_Z -> O_Z <= y -> y < M -> O_Z ≡ y mod M -> O_Z == y.
+Proof.
+  move => y M MnotO y_pos y_infM.
+  unfold CongMod.
+  intro congr; inversion congr; clear congr.
+  suff : x == O_Z.
+  intro x_null; setoid_rewrite x_null in H.
+  ring_simplify in H; fold O_Z in H.
+  assumption.
+  assert (-y == x * M).
+  ring [H].
+  *)

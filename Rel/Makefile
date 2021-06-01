@@ -1,6 +1,9 @@
 all :
 	C:\Coq\bin\coqc main.v
 
+build:
+	coqc main.v
+
 clean :
 	rm -Force .\main.vo
 	rm -Force .\main.vos
