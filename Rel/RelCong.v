@@ -61,16 +61,38 @@ Proof.
   reflexivity.
 Qed.
 
-(*
-Lemma iggsrghio : forall y M : rel, M =/= O_Z -> O_Z <= y -> y < M -> O_Z ≡ y mod M -> O_Z == y.
+Lemma simpl_CongMod0 : ∀ y M : rel, M > O_Z -> O_Z <= y -> y < M -> O_Z ≡ y mod M -> O_Z == y.
 Proof.
-  move => y M MnotO y_pos y_infM.
+  move => y M Mspos y_pos y_infM.
   unfold CongMod.
   intro congr; inversion congr; clear congr.
-  suff : x == O_Z.
-  intro x_null; setoid_rewrite x_null in H.
-  ring_simplify in H; fold O_Z in H.
-  assumption.
-  assert (-y == x * M).
-  ring [H].
-  *)
+
+  assert ((x == O_Z) \/ (x > O_Z) \/ (x < O_Z)) as Disj.
+  case x as [x_0 x_1].
+  unfold "==", "<", O_Z.
+  lia.
+
+  case Disj.
+  
+  + move => Eqx0.
+    setoid_rewrite Eqx0 in H.
+    ring_simplify in H; fold O_Z in H.
+    assumption.
+
+  + case => Hx.
+    assert (x * M + y > O_Z).
+      assert (O_Z < x * M) as H1 by apply relspos_prod => //.
+      apply (@rel_plusProper_ltle O_Z (x * M) H1 O_Z y) => //.
+    rewrite <-H in H0.
+    unfold O_Z, rel_lt in H0; lia.
+
+    assert (x * M + y < O_Z ).
+      assert (x * M <= - M) as H1 by apply rel_spos_sneg_prod => //.
+      assert (x * M < - y) as H2.
+        assert (- M < - y) by apply rel_minusProper_lt => //.
+        apply (@rel_lelt_lt (x * M) (- M) (- y)) => //.
+        assert (y <= y) by reflexivity.
+      pose H3 := (@rel_plusProper_ltle (x * M) (- y) H2 y y H0).
+      ring_simplify in H3; fold O_Z in H3; assumption.
+      rewrite <-H in H0. unfold "<", O_Z in H0. lia.
+Qed.

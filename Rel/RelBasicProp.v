@@ -32,3 +32,23 @@ Proof.
   + move => Eqxy.
     split; unfold rel_le, rel_eq in *; lia.
 Qed.
+
+Proposition relspos_prod : ∀ x y : rel, O_Z < x -> O_Z < y -> O_Z < x * y.
+Proof.
+  move => [x_0 x_1] [y_0 y_1].
+  unfold "<", O_Z, "*". simpl.
+  nia.
+Qed.
+
+Proposition rel_spos_sneg_prod : ∀ x y : rel, x < O_Z -> O_Z < y -> x * y <= - y.
+Proof.
+  move => [x_0 x_1] [y_0 y_1].
+  unfold "<", O_Z, "*". simpl.
+  nia.
+Qed.
+
+Proposition rel_lelt_lt : ∀ x y z : rel, x <= y -> y < z -> x < z.
+Proof.
+  move => [x_0 x_1] [y_0 y_1] [z_0 z_1].
+  unfold "<=", "<"; lia.
+Qed.

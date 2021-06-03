@@ -55,12 +55,18 @@ Example test_ring_tactic : forall x y z : rel,
   (x * (y - z) + z * x) == One * y * x + O_Z.
 Proof. move => x y z. ring. Qed.
 
-Lemma plus_relRR : forall x y z :rel,
-  (x + z == y + z) -> x == y.
+Lemma plus_relRR : forall x y z : rel,
+  (x + z == y + z) <-> x == y.
 Proof.
-    move => [x1 x2] [y1 y2] [z1 z2].
-    unfold rel_plus.
-    unfold rel_eq.
-    simpl.
-    lia.
+  move => [x1 x2] [y1 y2] [z1 z2].
+  unfold "+", "==".
+  lia.
+Qed.
+
+Lemma plus_relLR : forall x y z : rel,
+  (x + y == x + z) <-> y == z.
+Proof.
+  move => [x_0 x_1] [y_0 y_1] [z_0 z_1].
+  unfold "+", "==".
+  lia.
 Qed.

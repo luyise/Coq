@@ -61,15 +61,6 @@ Definition relpos_eucldiv (x y : rel) (pi_x : x >= O_Z) (pi_y : y > O_Z) : { div
   exact ( (@Fix rel R wf_relpos_lt (fun (x : rel) => (relpos_typediv_by y x)) (@ind_relpos_div_by y pi_y)) x pi_x).
 Qed.
 
-Lemma le_0_183 : O_Z <= rel_of_nat (183).
-Proof.
-  unfold O_Z, rel_of_nat, rel_le; lia.
-Qed.
-Lemma lt_0_22 : O_Z < rel_of_nat (22).
-Proof.
-  unfold O_Z, rel_of_nat, rel_lt; lia.
-Qed.
-
 Definition witness {A : Type} {P : A -> Prop} (S : @sig A P) : A.
   case S => x _.
   exact x.
@@ -91,7 +82,7 @@ Definition rel_abs (x : rel) :=
   if (x <? O_Z) is true then (- x)
   else x.
 
-Notation "| x |" := (rel_abs x) (at level 100).
+Notation "| x |" := (rel_abs x) (at level 30).
 
 Lemma relspos_abs : forall x : rel, O_Z < x -> | x | == x.
 Proof.
